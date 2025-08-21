@@ -7,8 +7,10 @@
   --cor4: #420d4b;
   --cor5: #210635;
   --cor6: #FB9EBB;
+  --cor7: #140322;
+  --cor8: #E8B9CC; /* Adicionando uma cor mais clara para o texto da lupa */
 
-  --fonte-padrão: "Montserrat";
+  --fonte-padrão: "Montserrat", sans-serif;
   --fonte-destaque: "Lora", serif;
 }
 
@@ -19,11 +21,9 @@
 }
 
 body {
-  background-image: linear-gradient(
-    to bottom,
-    var(--cor5),
-    var(--cor4)
-  );
+  background-image: linear-gradient(to bottom, var(--cor5), var(--cor7));
+  min-height: 100vh;
+  background-attachment: fixed;
   font-family: var(--fonte-padrão);
   line-height: 1.6;
   padding-top: 10px;
@@ -47,13 +47,13 @@ header {
 }
 
 nav {
-  background-image: linear-gradient(to right, var(--cor4), var(--cor3));
+  background-color: var(--cor5);
   display: flex;
   gap: 47px;
   border-radius: 50px;
   padding: 15px 30px;
-  box-shadow: 2px 8px 0px var(--cor4);
-  margin-top:10px;
+  box-shadow: 2px 8px 10px var(--cor4);
+  margin-top: 10px;
   margin-bottom: 50px;
   margin: auto;
   max-width: 100vh;
@@ -67,7 +67,7 @@ nav > a {
 }
 
 nav > a:hover {
-  color: var(--cor5);
+  color: var(--cor7);
 }
 
 .main-layout-container {
@@ -82,19 +82,20 @@ nav > a:hover {
 
 .left-sidebar {
   background-color: var(--cor5);
-  box-shadow: 10px 14px 4px var(--cor3);
+  box-shadow: 10px 14px 10px var(--cor4);
   padding: 50px;
   border-radius: 20px;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: flex-start;
   flex-direction: column;
   width: 350px;
-  min-height: calc(100vh - 80px); 
-  position: sticky;
+  min-height: calc(100vh - 80px);
+  position: static; /* Alterado de "fixe" para "static" */
   top: 20px;
-  margin-left: 150px;
-  margin-right: 100px;
+  margin-right: 50px;
+  padding-top: 50px;
+  padding-left: 10px;
   gap: 20px;
 }
 
@@ -121,7 +122,7 @@ hr {
   color: var(--cor1);
   text-align: center;
   font-size: 1rem;
-  font-weight: regular;
+  font-weight: normal; /* Corrigido de "regular" para "normal" */
 }
 
 .left-sidebar ul {
@@ -131,13 +132,22 @@ hr {
 }
 
 .icones-resumo {
-  width: 20px;
-  height: 20px;
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 50px;
-  gap: 15px;
+  gap: 24px;
+}
+
+.icones-resumo img {
+    width: 40px;
+    height: 40px;
+}
+
+.sidebar-language-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .profile-pic {
@@ -146,7 +156,7 @@ hr {
   border-radius: 50%;
   border: 1px solid var(--cor5);
   box-shadow: 2px 3px 0 var(--cor3);
-  margin-top: -20PX;
+  margin-top: -20px;
   margin-bottom: 30px;
 }
 
@@ -154,7 +164,7 @@ hr {
   font-family: var(--fonte-destaque);
   text-align: center;
   letter-spacing: 5px;
-  background-image: linear-gradient(to right, var(--cor6), var(--cor2));
+  background-image: linear-gradient(to right, var(--cor6) 15%, var(--cor2));
   color: var(--cor5);
   padding: 10px 80px 10px 80px;
   border-radius: 50px;
@@ -205,10 +215,13 @@ hr {
 
 .content-section {
   background: transparent;
-  box-shadow:6px 13px 4px var(--cor3);
-  border-radius: 0 0 50px 50px;
-  border: 7px solid var(--cor5);
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   position: relative;
 }
 
@@ -217,33 +230,60 @@ hr {
   align-items: center;
   justify-content: space-between;
   background-color: var(--cor5);
-  border-radius: 20px 20px 0 0;
-  padding: 10px 20px;
+  border-radius: 70px;
+  border: 1px solid var(--cor1);
+  padding: 10px 1px;
+  margin-top: 10px;
+  margin-bottom: 90px;
+  box-shadow: 2px 8px 10px var(--cor4);
+}
+
+.chat-resposta {
+  background-image: linear-gradient(to right, var(--cor7), var(--cor5));
+  border: 1px solid var(--cor1);
+  border-radius: 50px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 2px 8px 10px var(--cor4);
+  margin-top: -10px;
+  margin-bottom: 100px;
+}
+
+.chat-resposta p, .chat-resposta ul {
+  color: var(--cor1);
+  font-family: var(--fonte-padrão);
+  font-size: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  padding: 10px;
+  text-indent: 0; 
+  padding-right: 80px; 
+}
+
+.chat-resposta .avatar-resposta {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 2px 3px 10px var(--cor3);
+  position: absolute;
+  bottom: -150px;
+  right: -100px;
 }
 
 .content-section h2 {
   color: var(--cor1);
   font-family: var(--fonte-destaque);
   font-size: 1.8rem;
-  margin: 0;
+  margin: auto;
   text-align: center;
   text-shadow: 2px 2px 2px var(--cor5);
-  background-color: transparent;
+  background: transparent;
 }
 
 .icone-lupa-pergunta {
-    width: 30px;
-    height: 30px;
-    margin: 0;
-}
-
-.content-section p, .content-section ul {
-  color: var(--cor1);
-  font-family: var(--fonte-padrão);
-  font-size: 1rem;
-  text-indent: 50px;
-  line-height: 1.8;
-  padding: 10px;
+  width: 30px;
+  height: 30px;
+  margin-right: 50px;
 }
 
 .content-section ul li {
@@ -251,17 +291,7 @@ hr {
   margin-bottom: 8px;
 }
 
-.avatar-resposta {
-  width: 60px;
-  height: 60px;
-  border-radius: 50px;
-  border: 2px solid var(--cor3);
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-self: right;
-}
-
+/* Corrigido o seletor para evitar conflito */
 a {
   text-decoration: none;
   color: var(--cor1);
